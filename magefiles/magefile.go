@@ -9,7 +9,8 @@ import (
 )
 
 func init() {
-	magefiles.SetLibraryName("protoc")
+	magefiles.SetLibraryName("protoc-gen-grpc-java")
+	magefiles.SetLibraryRepo("grpc/grpc-java")
 }
 
 func Snapshot() error {

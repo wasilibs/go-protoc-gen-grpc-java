@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y binaryen git patch
 # Easiest way to build grpc-java plugin is add it to the protoc build
 ADD buildtools/wasm/version.txt /version.txt
 RUN git clone --recursive https://github.com/grpc/grpc-java.git --branch $(cat /version.txt | awk '{$1=$1};1') /grpcjava
-RUN git clone --recursive https://github.com/protocolbuffers/protobuf.git --branch v25.2 /workspace
+RUN git clone --recursive https://github.com/protocolbuffers/protobuf.git --branch v26.1 /workspace
 RUN cp -R /grpcjava/compiler/src/java_plugin/cpp /workspace/src/grpcjava
 RUN echo "set(protoc-gen-grpc-java_files \${protobuf_SOURCE_DIR}/src/grpcjava/java_plugin.cpp \${protobuf_SOURCE_DIR}/src/grpcjava/java_generator.cpp) \n\
 add_executable(protoc-gen-grpc-java \${protoc-gen-grpc-java_files} \${protobuf_version_rc_file}) \n\
