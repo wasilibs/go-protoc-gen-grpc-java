@@ -10,7 +10,6 @@ require (
 	github.com/cli/shurcooL-graphql v0.0.4 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/henvic/httpretty v0.0.6 // indirect
-	github.com/kr/text v0.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/magefile/mage v1.15.1-0.20230912152418-9f54e0f83e2a
 	github.com/mattn/go-isatty v0.0.19 // indirect
@@ -25,7 +24,9 @@ require (
 )
 
 require (
-	github.com/cli/go-gh/v2 v2.4.0
+	github.com/cli/go-gh/v2 v2.5.0
 	github.com/google/go-github/v58 v58.0.0
-	github.com/wasilibs/magefiles v0.0.0-20240111081200-bb6d5c95f839
+	github.com/wasilibs/magefiles v0.0.0-20240202004439-abe7b5473f12
 )
+
+require github.com/google/go-github v17.0.0+incompatible // indirect
