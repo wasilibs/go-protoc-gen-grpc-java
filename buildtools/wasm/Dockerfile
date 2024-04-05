@@ -15,7 +15,10 @@ set_target_properties(protoc-gen-grpc-java PROPERTIES VERSION 1.60.0) \n\
 
 WORKDIR /workspace
 
-ENV CXXFLAGS "${CXXFLAGS} -O3 -pthread -D_WASI_EMULATED_MMAN -D_WASI_EMULATED_PROCESS_CLOCKS"
+ADD buildtools/wasm/patch-absl.txt patch-absl.txt
+RUN cd third_party/abseil-cpp && patch -p1 < ../../patch-absl.txt
+
+ENV CXXFLAGS "${CXXFLAGS} -O3 -pthread -D_WASI_EMULATED_MMAN -D_WASI_EMULATED_PROCESS_CLOCKS -DABSL_HAVE_MMAP"
 ENV LDFLAGS $LDFLAGS -lwasi-emulated-mman -lwasi-emulated-process-clocks -Wl,--max-memory=4294967296
 
 RUN cmake -S . -B build
