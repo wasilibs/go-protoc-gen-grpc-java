@@ -7,8 +7,8 @@ import (
 
 func main() {
 	tasks.Define(tasks.Params{
-		LibraryName: "protoc",
-		LibraryRepo: "protocolbuffers/protobuf",
+		LibraryName: "protoc-gen-grpc-java",
+		LibraryRepo: "grpc/grpc-java",
 		GoReleaser:  true,
 	})
 	boot.Main()
