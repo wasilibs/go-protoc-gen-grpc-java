@@ -9,12 +9,12 @@ import (
 )
 
 func TestBuf(t *testing.T) {
-	if err := os.RemoveAll(filepath.Join("build", "buf")); err != nil {
+	if err := os.RemoveAll(filepath.Join("out", "buf")); err != nil {
 		t.Fatalf("failed to remove build directory: %v", err)
 	}
 
 	output := bytes.Buffer{}
-	cmd := exec.Command("go", "run", "github.com/bufbuild/buf/cmd/buf@v1.30.0", "generate")
+	cmd := exec.Command("go", "run", "github.com/bufbuild/buf/cmd/buf@v1.31.0", "generate")
 	cmd.Stderr = &output
 	cmd.Stdout = &output
 	cmd.Dir = "testdata"
@@ -23,7 +23,7 @@ func TestBuf(t *testing.T) {
 	}
 
 	for _, path := range []string{
-		filepath.Join("build", "buf", "java", "io", "grpc", "examples", "helloworld", "GreeterGrpc.java"),
+		filepath.Join("out", "buf", "java", "io", "grpc", "examples", "helloworld", "GreeterGrpc.java"),
 	} {
 		if _, err := os.Stat(path); err != nil {
 			t.Errorf("failed to stat %v: %v", path, err)
