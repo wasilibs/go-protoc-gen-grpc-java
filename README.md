@@ -1,6 +1,6 @@
 # go-protoc-gen-grpc-java
 
-go-protoc-gen-grpc-java is a distribution of [protoc-gen-grpc-java][1]. 
+go-protoc-gen-grpc-java is a distribution of [protoc-gen-grpc-java][1].
 It does not actually reimplement any functionality of grpc-java in Go, instead compiling it
 to WebAssembly, and executing with the pure Go Wasm runtime [wazero][2].
 This means that `go install` or `go run` can be used to execute it, with no need to rely on external
@@ -28,7 +28,12 @@ version: v1
 plugins:
   - plugin: grpc-java
     out: out/grpc-java
-    path: ["go", "run", "github.com/wasilibs/go-protoc-gen-grpc-java/cmd/protoc-gen-grpc-java@latest"]
+    path:
+      [
+        "go",
+        "run",
+        "github.com/wasilibs/go-protoc-gen-grpc-java/cmd/protoc-gen-grpc-java@latest",
+      ]
 ```
 
 This makes it possible to have full protobuf/gRPC generation with no installation of tools,
