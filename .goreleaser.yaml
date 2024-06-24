@@ -1,3 +1,4 @@
+project_name: protoc-gen-grpc-java
 builds:
   - main: ./cmd/protoc-gen-grpc-java
     id: es
@@ -17,8 +18,8 @@ archives:
 release:
   mode: append
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
 changelog:
-  skip: true
+  disable: true

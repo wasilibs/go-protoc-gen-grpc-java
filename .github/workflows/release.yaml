@@ -6,19 +6,6 @@ on:
       - v*
 
 jobs:
-  build:
-    name: Release
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: go.work
-          cache-dependency-path: "**/go.sum"
-
-      - run: go run build release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+    uses: wasilibs/actions/.github/workflows/release.yaml@7b3d415a47bf67024079ff9d9a0cbb96d7067276
+    secrets: inherit
