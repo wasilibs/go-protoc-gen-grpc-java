@@ -35,4 +35,4 @@ RUN cmake --build build --target protoc-gen-grpc-java -j 2
 
 RUN wasm-opt -o build/protoc-gen-grpc-java.wasm --low-memory-unused --flatten --rereloop --converge -O3 build/protoc-gen-grpc-java
 
-CMD ["cp",  "build/protoc-gen-grpc-java.wasm", "/out/"]
+CMD ["cp", "build/protoc-gen-grpc-java.wasm", "/out/"]
