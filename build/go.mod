@@ -2,8 +2,6 @@ module build
 
 go 1.24.0
 
-toolchain go1.24.11
-
 require (
 	github.com/goyek/x v0.4.0
 	github.com/wasilibs/tools v0.0.0-20260122051245-ab3579b3018a
