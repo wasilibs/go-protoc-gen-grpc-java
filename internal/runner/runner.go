@@ -11,7 +11,6 @@ import (
 	"github.com/tetratelabs/wazero"
 	"github.com/tetratelabs/wazero/api"
 	"github.com/tetratelabs/wazero/experimental"
-	"github.com/tetratelabs/wazero/experimental/sysfs"
 	"github.com/tetratelabs/wazero/imports/wasi_snapshot_preview1"
 	"github.com/tetratelabs/wazero/sys"
 	"github.com/wasilibs/wazero-helpers/allocator"
@@ -19,7 +18,7 @@ import (
 	"github.com/wasilibs/go-protoc-gen-grpc-java/internal/wasm"
 )
 
-func Run(name string, args []string, wasmBin []byte, stdin io.Reader, stdout io.Writer, stderr io.Writer, cwd string) int {
+func Run(name string, args []string, wasmBin []byte, stdin io.Reader, stdout io.Writer, stderr io.Writer) int {
 	ctx := context.Background()
 	ctx = experimental.WithMemoryAllocator(ctx, allocator.NewNonMoving())
 
@@ -33,8 +32,6 @@ func Run(name string, args []string, wasmBin []byte, stdin io.Reader, stdout io.
 
 	args = append([]string{name}, args...)
 
-	root := sysfs.DirFS(cwd)
-
 	cfg := wazero.NewModuleConfig().
 		WithSysNanosleep().
 		WithSysNanotime().
@@ -43,8 +40,7 @@ func Run(name string, args []string, wasmBin []byte, stdin io.Reader, stdout io.
 		WithStdout(stdout).
 		WithStdin(stdin).
 		WithRandSource(rand.Reader).
-		WithArgs(args...).
-		WithFSConfig(wazero.NewFSConfig().(sysfs.FSConfig).WithSysFSMount(root, "/"))
+		WithArgs(args...)
 	for _, env := range os.Environ() {
 		k, v, _ := strings.Cut(env, "=")
 		cfg = cfg.WithEnv(k, v)
