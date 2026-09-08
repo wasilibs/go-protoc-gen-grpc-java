@@ -2,4 +2,4 @@ version: v1
 plugins:
   - plugin: grpc-java
     out: ../out/buf/java
-    path: ["go", "run", "../cmd/protoc-gen-grpc-java"]
+    path: [go, run, ../cmd/protoc-gen-grpc-java]
